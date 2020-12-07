@@ -1,30 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import Nav from './components/Nav';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import NotFound from './components/NotFound';
+import Landing from './components/Landing';
+import Details from './components/Details';
 
 const App = () => {
-
-    // [Naming the Array, Function call to update State] --
-    const [users, setUsers] = useState([]);
-
-    const getUsers = async () => {
-        let res = await fetch('https://jsonplaceholder.typicode.com/users');
-        let users = await res.json();
-        setUsers(users);
-    }
-
-    // Empty [] is used to prevent an infinate Render loop --
-    useEffect(() => {
-        getUsers();
-    }, []);
-
     return (
         <>
-            <Nav />
-            <div id="container">
-                {users.map(user => (
-                    <h2 key={user.id} className="site-user">{user.name}</h2>
-                ))}
-            </div>
+            <Router>
+                <Fragment>
+                    <Nav />
+                    <Switch>
+                        <Route exact path="/" component={Landing} />
+                        <Route path="/Person/:id" component={Details} />
+                        <Route path="*" component={NotFound} />
+                    </Switch>
+                </Fragment>
+            </Router>
         </>
     );
 }
