@@ -8,9 +8,15 @@ const Nav = () => {
                 <Link className="nav-btn" to="/">
                     Home
                 </Link>
-                <p>
-                    Select from the users to the right to view their individual details.
-               </p>
+                <Link className="nav-btn" to="/ReadMe">
+                    Read Me
+                </Link>
+                <Link className="nav-btn" to="/Contact">
+                    Contact
+                </Link>
+                <div id="copy">
+                    Copyright Dumpster Fire
+                </div>
             </div>
         </>
     );
