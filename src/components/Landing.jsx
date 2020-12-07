@@ -19,7 +19,7 @@ const Landing = () => {
 
     return (
         <div id="container">
-            <h1>Our Users Database</h1>
+            <h1 className="site-user-header">Our Users Database</h1>
             {users.map(user => (
                 <Link to={"Person/" + user.id} className="site-user-btn"key={user.id}>{user.name}</Link>
             ))}

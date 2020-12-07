@@ -4,7 +4,7 @@ const Contact = () => {
     return (
         <>
             <div id="container">
-                <h1>Just a Fake Contact Page</h1>
+                <h1 className="site-user-header">Just a Fake Contact Page</h1>
             </div>
         </>
     );
