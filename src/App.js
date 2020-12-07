@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Nav from './components/Nav';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    // [Naming the Array, Function call to update State] --
+    const [users, setUsers] = useState([]);
+
+    const getUsers = async () => {
+        let res = await fetch('https://jsonplaceholder.typicode.com/users');
+        let users = await res.json();
+        setUsers(users);
+    }
+
+    // Empty [] is used to prevent an infinate Render loop --
+    useEffect(() => {
+        getUsers();
+    }, []);
+
+    return (
+        <>
+            <Nav />
+            <div id="container">
+                {users.map(user => (
+                    <h2 key={user.id} className="site-user">{user.name}</h2>
+                ))}
+            </div>
+        </>
+    );
 }
 
 export default App;
